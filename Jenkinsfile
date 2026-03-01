@@ -11,15 +11,7 @@ pipeline {
             }
         }
 
-        stage('Start Minikube') {
-            steps {
-                sh '''
-                if ! minikube status | grep -q "Running"; then
-                    minikube start --driver=docker
-                fi
-                '''
-            }
-        }
+        
 
         stage('Load Image into Minikube') {
             steps {
