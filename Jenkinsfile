@@ -1,6 +1,17 @@
 pipeline {
     agent any
 
+    environment {
+        KUBECONFIG = "/home/user/.kube/config"
+    }
+
+    pipeline {
+    agent any
+
+    environment {
+        KUBECONFIG = "/home/user/.kube/config"
+    }
+
     stages {
 
         stage('Build Docker Image') {
@@ -10,8 +21,6 @@ pipeline {
                 '''
             }
         }
-
-        
 
         stage('Load Image into Minikube') {
             steps {
@@ -31,3 +40,4 @@ pipeline {
         }
     }
 }
+
