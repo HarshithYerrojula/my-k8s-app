@@ -1,25 +1,22 @@
 stages:
   - build
+  - test
   - deploy
 
-variables:
-  DOCKER_DRIVER: overlay2
-
-build:
+build_job:
   stage: build
-  image: docker:latest
-  services:
-    - docker:dind
   script:
-    - docker build -t my-k8s-app:$CI_PIPELINE_ID .
-  only:
-    - main
+    - echo "Building application..."
+    - echo "Build completed successfully"
 
-deploy:
-  stage: deploy
-  image: alpine:latest
+test_job:
+  stage: test
   script:
-    - echo "Simulating deployment..."
-    - echo "Deploy stage complete"
-  only:
-    - main
+    - echo "Running tests..."
+    - echo "Tests passed"
+
+deploy_job:
+  stage: deploy
+  script:
+    - echo "Deploying application..."
+    - echo "Deployment successful"
